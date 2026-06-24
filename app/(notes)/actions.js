@@ -26,10 +26,11 @@ export async function createNote(formData) {
     .insert([{ user_id: user.id, title, content }]);
 
   if (error) {
-    throw error
+    throw new Error(error.message);
   }
 
   revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 export async function updateNote(formData){
